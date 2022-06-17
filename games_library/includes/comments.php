@@ -18,30 +18,31 @@ if(isset($_POST['save_comment'])){
 
 <table class="form-table">
 
-<tr><td class="t-right">Fullname</td><td><input class="input-text" type="text" id="fullname" name="fullname" /></td></tr>
+<tr><td class="t-right">Username</td><td><input class="input-text" type="text" id="fullname" name="fullname" /></td></tr>
 
 <tr><td class="t-right">Email</td><td><input class="input-text" type="text" id="email" name="email" /></td></tr>
 
-<tr><td class="t-right">Comments</td><td><textarea class="textarea" id="comments" name="comments"></textarea></td></tr>
+<tr><td class="t-right">Your Review:</td><td><textarea class="textarea" id="comments" name="comments"></textarea></td></tr>
 
-<tr><td class="t-right">&nbsp;</td><td><input class="button" type="submit" value="Submit" /></td></tr>
+<tr><td><input class="button" type="submit" value="Submit" /></td></tr>
 
 </table>
 
 </form>
 
-<hr />
+<div>
+	<?php
+	$sql="SELECT * FROM comments WHERE game_id=$game_id";
+	$result = mysqli_query($conn,$sql);
 
-<?php
-$sql="SELECT * FROM comments WHERE game_id=$game_id";
-$result = mysqli_query($conn,$sql);
-while ($row=mysqli_fetch_array($result)) {
-	echo "<table class=\"comments-table\"><tr><td>";
-	echo "<b>$row[fullname]</b><br />";
-	echo "$row[email]<br />";
-	echo "<i class=\"small\">$row[created]</i>";
-	echo "</td><td class=\"comments-left-cell\">";
-	echo nl2br(stripslashes($row['comments']));
-	echo "</td></tr></table>";
-}
-?>
+	while ($row=mysqli_fetch_array($result)) {
+		echo "<table class=\"comments-table\"><tr><td>";
+		echo "<b>$row[fullname]</b><br />";
+		echo "$row[email]<br />";
+		echo "<i class=\"small\">$row[created]</i>";
+		echo "</td><td class=\"comments-left-cell\">";
+		echo nl2br(stripslashes($row['comments']));
+		echo "</td></tr></table>";
+	}
+	?>
+</div>	

@@ -18,16 +18,15 @@ if(isset($_GET['game'])){
 	$row=mysqli_fetch_array($result);
 	$title = stripslashes($row['title']);
 	$image = $row['image'];
-	$bio = nl2br(stripslashes($row['bio']));
-	$video = $row['video'];
+	$description = nl2br(stripslashes($row['description']));
+	$trailer = $row['trailer'];
 	$website = $row['website'];
 	echo "<h2>$title</h2>\n";
 	if($image!=""){echo "<img class=\"image-right\" src=\"images/games/$image\" alt=\"$title\" />\n"; }
-	echo "<div class=\"t-justify\">$bio</div><br /><br />\n";
-	if($video!=""){ echo "<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/$video\"></iframe>\n"; }
+	echo "<div class=\"t-justify\">$description</div><br /><br />\n";
+	if($trailer!=""){ echo "<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/$trailer\"></iframe>\n"; }
 	if($website!=""){ echo "<div class=\"website\">Official Website: <a target=\"_blank\" href=\"$website\">$website</a></div>\n"; }
-	echo "<hr />\n";
-	echo "<h3>Comments</h3>\n";
+	echo "<h3>REVIEWS</h3>\n";
 	include("comments.php");
 }else{
 	echo "<h3 style=\"text-align: center;\">$game_categories[$category] Games</h3>\n";

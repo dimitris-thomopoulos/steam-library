@@ -53,8 +53,10 @@ body *::selection {
     color: white;
 }
 
+/* -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); */
+
 iframe, video, img, svg, button, a {
-    user-select: none;
+    user-select: none !important;
 }
 
 iframe {
@@ -76,14 +78,18 @@ body {
     background:#000;
     font-family:Arial,sans-serif;
     font-size:13px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('../images/wallpapers/home.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgb(0 0 0)), url('../images/wallpapers/home.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 p, a, div {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', Arial;
+}
+
+.menu-item, input.button, input, textarea, button {
+    font-family: 'Quicksand', Arial;
 }
 
 #main {
@@ -121,6 +127,10 @@ p, a, div {
     transition: 0.2s ease-in-out;
 }
 
+#small-nav > a:nth-of-type(3) {
+    display: none;
+}
+
 hr {
     display: none;
     //display:block;
@@ -140,7 +150,7 @@ a {
 
 #menu a:hover {
     color:white;
-    background: #9818ff7a;
+    background: #b4eeff2e;
     border-radius: 10px;
     transition: color, background 0.2s ease-in-out;
 }
@@ -150,9 +160,35 @@ a {
     border-bottom-left-radius: 60px;
 }
 
-#menu a:nth-of-type(7):hover, #menu .menu-item:nth-of-type(7) {
+#menu a:last-child:hover, #menu .menu-item:last-child {
     border-top-right-radius: 60px;
     border-bottom-right-radius: 60px;
+}
+
+a[href="admin.php?logout=1"] {
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+a[href="admin.php?logout=1"]:hover {
+    transform: translateY(-5px);
+    color: #9fe9ff;
+    transition: all 0.2s ease-in-out;
+}
+
+
+a[href="admin.php?logout=1"] + #menu {
+    margin-top: 50px;
+}
+
+a[href="admin.php?logout=1"] + #menu a:nth-of-type(1) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+a[href="admin.php?logout=1"] + #menu a:nth-of-type(2) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 #menu {
@@ -161,6 +197,12 @@ a {
     background: #00000075;
     border-radius: 60px;
     margin: 20px 0;
+}
+
+#menu + div > h3 {
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
 }
 
 #home-list {
@@ -200,7 +242,7 @@ a {
 
 .submenu {
     list-style-type: none;
-    margin: 0;
+    margin-bottom: 80px;
     padding: 0;
     text-align: center;
 }
@@ -214,6 +256,7 @@ a {
     padding: 10px 12px;
     background: #b4eeff;
     color: #061454;
+    font-size: 16px;
     border-radius: 50px;
     transition: all 0.2s ease-in-out;
 }
@@ -227,7 +270,17 @@ a {
     padding: 10px 12px;
     background: #9818ff;
     color: #ffef00;
+    font-size: 16px;
     border-radius: 50px;
+}
+
+ul.submenu + h2 {
+    color: #f2fcff;
+}
+
+.games-table tr {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .games-table td {
@@ -236,10 +289,68 @@ a {
     display: flex;
 }
 
+.games-table td a {
+    font-size: 16px;
+}
+
 .image-right {
     float:right;
     margin:0 0 15px 20px;
     border-radius: 15px;
+    box-shadow: 0px 0px 12px 4px #b4eeff5c;
+}
+
+ul.submenu ~ h2 ~ img.image-right ~ iframe {
+    width: 100%;
+    margin: 40px 0;
+    height: 500px;
+}
+
+form#comments-form {
+    display: inline;
+}
+
+form#comments-form > table.form-table {
+    display: inline-block;
+}
+
+form#comments-form + div {
+    width: 50%;
+    float: right;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 400px;
+    border-radius: 10px;
+}
+
+form#comments-form + div::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 10px;
+}
+
+form#comments-form + div::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+form#comments-form + div::-webkit-scrollbar-thumb:hover {
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+table.comments-table {
+    width: 100%;
+    float: right;
+    background: linear-gradient(90deg, #760b46, #760b4666);
+    padding: 15px 0;
+    border-radius: 10px;
+}
+
+table.comments-table:nth-of-type(2n) {
+    background: linear-gradient(90deg, #9818ff, #6e10b938);
 }
 
 #home-list a, td a {
@@ -270,10 +381,17 @@ td a img:hover {
 
 tr:not(table.form-table tr) {
     display: flex;
+    justify-content: center;
+}
+
+.comments-table tr {
+    justify-content: start !important;
 }
 
 .t-justify {
     text-align:justify;
+    font-size: 15px;
+    display: inline;
 }
 
 .t-right {
@@ -296,26 +414,34 @@ tr:not(table.form-table tr) {
     text-decoration:underline;
 }
 
+.website + h3 {
+    margin: 90px 0 45px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 .validator-img {
     vertical-align:middle;
 }
 
 .form-table td {
-    padding:5px;
+    padding: 5px 0;
     vertical-align:top;
 }
 
 .input-text, .textarea {
-    padding:5px;
-    width:300px;
-    background:#c4c4c4;
-    color:#4e4e4e;
-    border:1px solid #4e4e4e;
+    padding: 5px;
+    width: 300px;
+    background: #ecddff;
+    color: #4e4e4e;
+    border: 1px solid #2c0b5500;
     border-radius: 10px;
 }
 
 .textarea {
     height:130px;
+    resize: none;
 }
 
 .button {
@@ -332,6 +458,15 @@ tr:not(table.form-table tr) {
     background:#9818ff;
     color:#fff;
     border-radius: 60px;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-table .button {
+    background: linear-gradient(202deg, #910c56, #540832);
+    transition: all 0.2s ease-in-out;
+}
+
+.form-table .button:hover {
     transition: all 0.2s ease-in-out;
 }
 
@@ -354,4 +489,435 @@ tr:not(table.form-table tr) {
 
 .small {
     font-size: 11px;
+}
+
+.button {
+    background-color: #2a36b1;
+}
+
+
+/* FORM STYLES */
+
+form td.t-right {
+    font-family: 'Quicksand', Arial;
+}
+
+form td input.button {
+   text-transform: uppercase;
+}
+
+.form-table .button:hover {
+     transition: all 0.2s ease-in-out;
+}
+
+.form-table .input-text, textarea {
+    padding: 10px 5PX;
+}
+    
+table.form-table > tbody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table.form-table > tbody > tr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* ADMIN PAGE STYLES */
+
+/* ADMIN.PHP?PAGE=LIST STYLES */
+
+a[href="admin.php?logout=1"] + #menu + table.form-table {
+    margin-top: 50px;
+}
+
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td {
+    margin: auto;
+
+}
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td > a {
+    background: #84848482;
+    padding: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.7);
+    transition: background 0.2s ease-in-out;
+}
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td > a:hover {
+    background: red;
+    transition: background 0.2s ease-in-out;
+}
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td > b > a {
+    transition: color 0.2s ease-in-out;
+}
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td > b > a:hover {
+    color: #9fe9ff;
+    transition: color 0.2s ease-in-out;
+}
+
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td.t-right {
+    text-align: center;
+}
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td.t-right + td {
+    transform: scaleX(1.25);
+}
+
+a[href="admin.php?logout=1"] + #menu + table.form-table tbody tr td.t-right a {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#main > form[action="admin.php?page=list"] tr td {
+    font-size: 18px;
+}
+
+#main > form[action="admin.php?page=list"] tr input, #main > form[action="admin.php?page=list"] tr textarea {
+    font-size: 16px;
+}
+
+#main > form[action="admin.php?page=list"] tr input.button {
+    font-size: 20px;
+    padding: 15px 25px;
+}
+
+
+
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+/* RESPONSIVENESS */
+
+
+
+/* Admin page responsiveness */
+
+ 
+
+@media (max-width: 1000px) {
+
+
+   #small-nav {
+    position: static;
+    margin: 15px 0 30px;
+   }
+
+   #small-nav > a > svg {
+    transform: scale(1.5);
+    margin: 0 7.5px;
+    transition: all 0.2s ease-in-out;
+   }
+
+    
+}
+
+/* Form styles responsiveness */
+
+
+@media (max-width: 1000px) {
+
+    .form-table .input-text, textarea {
+       padding: 15px 5px;
+    }
+
+    .form-table .button {
+        padding: 15px 40px;
+        font-size: 20px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    form td.t-right {
+      font-size: 20px;
+    }
+
+    form td input.input-text {
+      font-size: 18px;
+    }
+
+}
+
+form#comments-form {
+    margin-left: 70px;
+}
+
+@media (max-width: 1065px) {
+
+}
+
+
+/* Add padding for bigger devices */
+
+@media (min-width: 1560px) {
+
+    div#menu + div {
+        padding: 0 15%;
+    }
+    
+}
+
+/* Burger menu responsiveness */
+
+@media (max-width: 1000px) {
+    #small-nav > a:nth-of-type(3) {
+        display: initial;
+    }
+}
+
+/* Games table responsiveness */ 
+    
+@media (max-width: 1000px) {
+    
+    .games-table td {
+        margin: 20px;
+    }
+}
+
+/* Single game page responsiveness */
+
+@media (max-width: 1000px) {
+
+    ul.submenu + h2 {
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: 60px;
+        font-size: 32px;
+    }
+
+    .image-right {
+        float: none;
+        display: block;
+        margin: 0 auto 50px auto;
+    }
+
+    .website {
+        float: none;
+        margin: 0 auto;
+        width: 80%;
+        text-align: center;
+        overflow-x: hidden;
+    }
+
+    .submenu {
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 88%;
+        margin: 0 auto;
+    }
+
+    .submenu-item {
+        margin: 10px 5px;
+    }
+
+    form#comments-form {
+        display: flex;
+    }
+
+    form#comments-form > table.form-table {
+        margin: 0 auto;
+    }
+
+    form#comments-form + div {
+        margin-top: 50px;
+        /* width: initial; */
+        /* float: none; */
+    }
+    
+    table.comments-table {
+        float: none;
+    }
+    
+
+    tr:not(table.form-table tr) {
+        justify-content: center;
+    }
+
+    .comments-table tr {
+        justify-content: start !important;
+    }
+}
+
+@media (max-width: 580px) {
+    div#menu + div {
+        display: contents;
+    }
+
+    .submenu-item a, .submenu-item b {
+        display: block;
+    }
+
+    .image-right {
+        width: 350px;
+    }
+
+    .website {
+        width: 90%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 456px) {
+    .image-right {
+        width: 300px;
+    }
+}
+
+@media (max-width: 390px) {
+    .image-right {
+        width: 270px;
+    }
+}
+
+/* Reviews responsiveness */
+
+@media (max-width: 1065px) {
+
+    .comments-table tr {
+        flex-direction: column;
+    }
+
+    .comments-left-cell {
+        border-left: none;
+    }
+
+    form#comments-form {
+        margin-left: 50px;
+    }
+
+}
+
+@media (max-width: 1025px) {
+    form#comments-form {
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 1000px) {
+    
+    form#comments-form {
+        margin-left: 0;
+    }
+    
+    form#comments-form + div {
+        width: 90%;
+        float: none;
+        margin: 50px auto;
+    }
+}
+
+/* Burger menu responsiveness */
+
+@media (max-width: 1082px) {
+    a.menu-item {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1008px) {
+    a.menu-item {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    #menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        backdrop-filter: blur(8px);
+        border-radius: 10px;
+        background: #000000e0;
+        width: 0;
+        opacity: 0;
+        transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    
+    #menu.mobile-visible {
+        width: 200px;
+        opacity: 100%;
+        transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    #menu a {
+        width: 100%;
+        padding: 30px 0;
+        text-align: center;
+        font-size: 0.000000000000000000001px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #menu a.mobile-visible {
+        font-size: 20px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    #menu a:nth-of-type(1):hover, #menu .menu-item:nth-of-type(1), #menu a:last-child:hover, #menu .menu-item:last-child {
+        border-radius: 10px;
+    }
+
+    /* Login page responsiveness for menu */
+
+    a[href="admin.php?logout=1"] + #menu {
+        display: flex;
+        position: static;
+        width: 200px;
+        opacity: 100%;
+    }
+
+    a[href="admin.php?logout=1"] + #menu a {
+        font-size: 20px;
+    }
+
+    a[href="admin.php?logout=1"] + #menu a:nth-of-type(1) {
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 0;
+    }
+    
+    a[href="admin.php?logout=1"] + #menu a:nth-of-type(2) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 0;
+    }
 }

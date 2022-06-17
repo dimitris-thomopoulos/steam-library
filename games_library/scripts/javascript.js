@@ -27,4 +27,4 @@ function confirm_delete(the_link) {
         the_link.href;
    }
     return is_confirmed;
-} 
+}
